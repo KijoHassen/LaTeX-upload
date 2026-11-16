@@ -1,20 +1,144 @@
-\documentclass{article}
-\usepackage{ctex}
+\documentclass{ctexart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{definition}[theorem]{定义}
+\renewcommand{\proofname}{证明}
+
+\title{中英文 \LaTeX{} 测试文档\\zh/en Test Document}
+\author{Author Name}
+\date{\today}
 
 \begin{document}
-\LaTeX{}
-输入中文测试
+\maketitle
 
-test for English
+\begin{abstract}
+本文用于测试 \LaTeX{} 的中英文混排、公式、图表、算法、定理与参考文献等常用功能。
+This document tests common \LaTeX{} features for engineering papers.
+\end{abstract}
 
-自动保存
+\section{中文测试}
+输入中文测试。自动保存。中英文混排：本文使用 \LaTeX{} 排版，English text is mixed here.
 
-$$
-\int_{1}^{5} x^2 \,dx 
-$$
+\section{English Test}
+This is a test for English. The quick brown fox jumps over the lazy dog.
 
-$$
-\int_{-\infty}^{+\infty} e^{-\tau} U(\tau) \,d\tau
-$$
+\section{行内与行间公式}
+行内公式：$a^2+b^2=c^2$，$\alpha,\beta,\gamma$，$x_i^{(k)}$。
+
+行间公式：
+\begin{equation}
+\label{eq:integral}
+\int_{1}^{5} x^2 \,dx = \frac{125-1}{3} = \frac{124}{3}.
+\end{equation}
+
+\begin{equation}
+\label{eq:conv}
+\int_{-\infty}^{+\infty} e^{-\tau} U(\tau) \,d\tau.
+\end{equation}
+
+多行对齐：
+\begin{align}
+f(x) &= (x+1)^2 \nonumber\\
+     &= x^2 + 2x + 1.
+\end{align}
+
+矩阵与分段函数：
+\[
+A=\begin{bmatrix}
+1 & 2\\
+3 & 4
+\end{bmatrix},\qquad
+g(x)=
+\begin{cases}
+x, & x\ge 0,\\
+-x, & x<0.
+\end{cases}
+\]
+
+\section{图表}
+\begin{table}[htbp]
+\centering
+\caption{实验数据}
+\label{tab:data}
+\begin{tabular}{lcc}
+\toprule
+方法 & 准确率 & 时间/s\\
+\midrule
+方法A & 0.91 & 1.2\\
+方法B & 0.95 & 2.4\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+如表~\ref{tab:data} 所示，方法B准确率更高。图~\ref{fig:demo} 为示例图。
+
+\begin{figure}[htbp]
+\centering
+% \includegraphics[width=0.6\textwidth]{figure.png}
+\fbox{\rule{0pt}{3cm}\rule{6cm}{0pt}}
+\caption{示例图}
+\label{fig:demo}
+\end{figure}
+
+\section{算法}
+\begin{algorithm}[htbp]
+\caption{示例算法}
+\label{alg:demo}
+\begin{algorithmic}[1]
+\Require 输入 $x$
+\Ensure 输出 $y$
+\State 初始化 $y \gets 0$
+\For{$i=1$ to $n$}
+    \State $y \gets y + x_i$
+\EndFor
+\State \Return $y$
+\end{algorithmic}
+\end{algorithm}
+
+\section{定理与证明}
+\begin{definition}
+若 $f$ 在区间 $I$ 上连续，则称 $f$ 在 $I$ 上连续。
+\end{definition}
+
+\begin{theorem}
+\label{thm:main}
+设 $f$ 在 $[a,b]$ 上连续，则 $f$ 在 $[a,b]$ 上有界。
+\end{theorem}
+
+\begin{proof}
+由连续函数的性质可知结论成立。
+\end{proof}
+
+由定理~\ref{thm:main} 可得相应推论。
+
+\section{列表与引用}
+\begin{itemize}
+    \item 无序列表项一；
+    \item 无序列表项二。
+\end{itemize}
+
+\begin{enumerate}
+    \item 有序列表项一；
+    \item 有序列表项二。
+\end{enumerate}
+
+引用示例：见式~\eqref{eq:integral}、表~\ref{tab:data}、图~\ref{fig:demo}、算法~\ref{alg:demo}。
+
+\section{参考文献}
+引用示例~\cite{knuth1984}。
+
+\begin{thebibliography}{9}
+\bibitem{knuth1984}
+D. E. Knuth. \emph{The \TeX book}. Addison-Wesley, 1984.
+\end{thebibliography}
 
 \end{document}
